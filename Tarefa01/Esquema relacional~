@@ -1,0 +1,12 @@
+1)
+fita(#número,&filme)
+filme(#id,titulo,categoria,&atores)
+atores(#nome real,data de nascimento)
+vinis(#número,N musicas,&artista)
+artista(#id,nacionalidade,estilo,&músico)
+musico(#nome real,data de nascimento)
+cliente(#id,fone,endereço,nome complero)
+emprestimo(#número_filme,#número_vinis,históricos,#&cliente)
+buscas(#&nome_real,#&idfilme,#&idcliente)
+
+
