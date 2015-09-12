@@ -1,0 +1,188 @@
+--1)      Função para inserção e exclusão de um Setor.
+CREATE OR REPLACE FUNCTION insere_setor(cods int, nome setor.nome%TYPE) RETURNS void AS
+$$
+BEGIN
+INSERT INTO Setor VALUES ($1,$2);
+RETURN;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION exclui_setor(deletado int) RETURNS void AS
+$$
+BEGIN
+DELETE FROM Setor WHERE cods = $1;
+RETURN;
+END;
+$$
+LANGUAGE plpgsql;
+
+--2)      Função para inserção e exclusão de um Mecânico.
+
+CREATE OR REPLACE FUNCTION insere_mecanico(codm int, cpf bigint, nome mecanico.nome%TYPE, idade int, endereco mecanico.endereco%TYPE, cidade mecanico.cidade%TYPE, funcao mecanico.funcao%TYPE, cods int ) RETURNS void AS
+$$
+BEGIN
+INSERT INTO Setor VALUES ($1,$2, $3, $4, $5, $6, $7, $8);
+RETURN;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION exclui_mecanico(deletado int) RETURNS void AS
+$$
+BEGIN
+DELETE FROM Mecanico WHERE codm = $1;
+RETURN;
+END;
+$$
+LANGUAGE plpgsql;
+
+
+
+
+
+--3)      Função para inserção e exclusão de uma Cliente.
+
+CREATE OR REPLACE FUNCTION insere_cliente(codc int, cpf bigint, nome cliente.nome%TYPE, idade int, endereco cliente.endereco%TYPE, cidade cliente.cidade%TYPE, codv int ) RETURNS void AS
+$$
+BEGIN
+INSERT INTO Cliente VALUES ($1,$2, $3, $4, $5, $6, $7);
+RETURN;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION exclui_cliente(deletado int) RETURNS void AS
+$$
+BEGIN
+DELETE FROM Cliente WHERE codc = $1;
+RETURN;
+END;
+$$
+LANGUAGE plpgsql;
+
+--4)      Função para inserção e exclusão de um Veículo.
+
+CREATE OR REPLACE FUNCTION insere_veiculo(codv int, renavam bigint, modelo veiculo.modelo%TYPE, marca veiculo.marca%TYPE, ano int, quilometragem veiculo.quilometragem%TYPE) RETURNS void AS
+$$
+BEGIN
+INSERT INTO Veiculo VALUES ($1,$2,$3,$4,$5,$6);
+RETURN;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION exclui_veiculo(deletado int) RETURNS void AS
+$$
+BEGIN
+DELETE FROM veiculo WHERE codv = $1;
+RETURN;
+END;
+$$
+LANGUAGE plpgsql;
+
+
+
+
+--5)      Função para inserção e exclusão de um Conserto.
+
+CREATE OR REPLACE FUNCTION insere_conserto(codm int, codv int, data conserto.data%TYPE, hora conserto.hora%TYPE) RETURNS void AS
+$$
+BEGIN
+INSERT INTO conserto VALUES ($1,$2, $3, $4);
+RETURN;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION exclui_conserto(deletado int, deletado2 int) RETURNS void AS
+$$
+BEGIN
+DELETE FROM conserto WHERE codm = $1 and codv=$2;
+RETURN;
+END;
+$$
+LANGUAGE plpgsql;
+
+--6)      Função para calcular a média geral de idade dos Mecânicos e Clientes.
+
+CREATE OR REPLACE FUNCTION media_geral() RETURNS float AS
+$$
+DECLARE 
+vidade int default 0;
+b int default 0;
+quanti int default 0;
+resultado float default 0;
+BEGIN
+FOR vidade IN SELECT idade FROM Cliente LOOP
+    b:=b+vidade;
+    quanti := quanti+1;
+END LOOP;
+FOR vidade IN SELECT idade FROM Mecanico LOOP
+    b:=b+vidade;
+    quanti := quanti+1;
+END LOOP;
+resultado := b/quanti;
+raise notice 'a = %', resultado;
+RETURN resultado;
+END;
+$$
+
+
+--7)      Uma única função que permita fazer exclusão de um Setor, Mecânico, Cliente ou Veículo.
+
+CREATE OR REPLACE FUNCTION exclui_algo(cods int, codm int, codc int, codv int) RETURNS void AS
+$$
+BEGIN
+
+if cods<>0 then
+    execute exclui_setor(cods);
+end if;
+if codm<>0 then
+    execute exclui_mecanico(codm);
+end if;
+if codc<>0 then
+    execute exclui_cliente(codc);
+end if;
+if codc<>0 then
+    execute exclui_veiculo(codv);
+end if;
+RETURN;
+END;
+$$
+LANGUAGE plpgsql;
+
+
+--8)      Considerando que na tabela Cliente apenas codc é a chave primária, faça uma função que remova clientes com CPF repetido, deixando apenas um cadastro para cada CPF. Escolha o critério que preferir para definir qual cadastro será mantido: aquele com a menor idade, que possuir mais consertos agendados, etc. Para testar a função, não se esqueça de inserir na tabela alguns clientes com este problema.
+
+CREATE OR REPLACE FUNCTION exclui_cpf() RETURNS integer AS
+$$
+DECLARE 
+a cliente%ROWTYPE;
+b cliente%ROWTYPE;
+cont integer default 1;
+x integer default 1;
+linhas integer default 0;
+BEGIN
+FOR a IN SELECT * FROM Cliente LOOP
+    FOR b IN SELECT * FROM Cliente LOOP
+        if x>cont then
+            if a.cpf = b.cpf then
+                execute exclui_cliente(a.codc);
+                linhas:=linhas+1;
+            end if;    
+        end if;
+        x := x + 1;        
+    END LOOP;
+    x := 1;
+    cont := cont + 1;
+    
+END LOOP;
+RETURN linhas;
+END;
+$$    
+LANGUAGE plpgsql;
+
+
+--9)   Função para calcular se o CPF é válido*.
+--10)   Função que calcula a quantidade de horas extras de um mecânico em um mês de trabalho. O número de horas extras é calculado a partir das horas que excedam as 160 horas de trabalho mensais. O número de horas mensais trabalhadas é calculada a partir dos consertos realizados. Cada conserto tem a duração de 1 hora.
