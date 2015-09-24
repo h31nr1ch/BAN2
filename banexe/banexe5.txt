@@ -1,0 +1,67 @@
+BAN
+Tiago Heinrich
+
+/*Setor (cods, nome)
+Mecanico (codm, cpf, nome, idade, endereco, funcao, cods)
+    cods referencia Setor
+Veiculo (codv, renavam, modelo, marca, ano, quilometragem)
+Cliente(codc, cpf, nome, idade, endereco, codv)
+    codv referencia Veiculo
+Conserto (codm, codv, data, hora)
+    codm referencia Mecanico
+    codv referencia Veiculo
+*/
+--1)      Mostre o nome e a função dos mecânicos.
+CREATE VIEW mecanico2 (nome ,funcao) as
+SELECT nome, funcao
+FROM mecanico
+
+SELECT nome, funcao
+FROM mecanico2
+--2)      Mostre o nome e veículos dos clientes.
+CREATE VIEW veiculos1 (nome,modelo) as
+SELECT c.nome, v.modelo
+FROM Cliente c join Veiculo v on (c.codv = v.codv) 
+
+SELECT nome, modelo
+FROM veiculos1
+--3)      Mostre o nome dos mecânicos, o nome dos clientes, o nome dos veículos e a data e hora dos consertos realizados.
+CREATE VIEW () as
+SELECT m.nome, c.nome,v.modelo, co.data, co.hora
+FROM Mecanico m join Conserto co on (m.codm = co.codm) join Cliente c on (c.codv = co.codv) join Veiculo v on (v.codv = c.codv)
+
+--4)      Mostre o ano dos veículos e a média de quilometragem para cada ano.
+CREATE VIEW () as
+SELECT avg (v.quilometragem), v.ano
+FROM Veiculo v
+ 
+--5) Mostre o nome dos mecânicos e o total de consertos feitos por um mecânico em cada dia.
+CREATE VIEW () as
+SELECT nome, co.count()
+FROM Conserto co join Mecanico on (m.codm = co.codm)
+
+CREATE VIEW () as
+SELECT DISTINCT nome, co.count(codv)
+FROM Conserto co join Mecanico on (m.codm = co.codm)
+--6)      Mostre o nome dos setores e o total de consertos feitos em um setor em cada dia.
+CREATE VIEW () as
+SELECT DISTINCT setores, count (codm)
+FROM Mecanico m join setor s on (m.cods = s.cods)
+--7)      Mostre o nome das funções e o número de mecânicos que têm uma destas funções.
+CREATE VIEW () as
+SELECT DISTINCT funcao, count (funcao)
+FROM Mecanico
+
+--8)Mostre o nome dos mecânicos e suas funções e, para os mecânicos que estejam alocados a um setor, informe também o número e nome do setor.
+
+CREATE VIEW MechanicsFunctions (name, function, nSector, nameSector) 
+
+AS SELECT m.nome,m.funcao,s.cods,s.nome FROM Mecanico m 
+LEFT JOIN Setor s USING(cods)
+
+--9)Mostre o nome das funções dos mecânicos e a quantidade de consertos feitos agrupado por cada função.
+
+CREATE VIEW FunctionsRepairs (name, function, repairs) 
+AS SELECT m.nome,m.funcao, count(*) FROM Mecanico m 
+JOIN Conserto c USING(codm)
+group by m.nome, m.funcao

@@ -1,0 +1,59 @@
+Tiago Heinrich
+BAN2 -----04
+
+
+--1)    Recupere todos os atributos dos professores do departamento Ciência da Computação.
+
+Select p.*
+From Professor p join Departamento d on p.codigoDepartamento = d.codigo
+where d.nome = upper('Ciência da Computação')
+
+--2)    Recupere o CPF, nome e endereço dos professores do departamento Administração.
+
+Select p.cpf, p.nome, p.logradouro, p.bairro, p.cidade, p.estado
+From Professor p join Departamento d on p.codigoDepartamento = d.codigo
+where d.nome = upper('administração')
+
+--3)    Recupere as disciplinas dos cursos de Ciência da Computação e Física.
+
+Select di.nome
+From Disciplina di join Curso cu on di.codigoCurso = cu.codigo
+where cu.nome = upper('ciência da computação') or cu.nome = upper('fisica')
+
+--4)    Recupere os alunos matriculados na disciplina Engenharia de Software do curso Ciência da Computação no semestre 2012-2. O resultado deve conter: 
+--ano, semestre, matrícula do aluno, nome do aluno, código da disciplina, nome da disciplina e o código do curso.
+
+Select distinct t.anoSemestre, t.numeroSemestre, a.matricula, a.nome, t.codigoDisciplina, di.nome, di.codigoCurso
+From Aluno a join Matricula m on a.matricula = m.matriculaAluno join Turma t on t.numero = m.numeroTurma join Disciplina di on t.codigoDisciplina = di.codigo
+where di.nome = upper('engenharia de software') and t.anoSemestre = 2012 and t.numeroSemestre = 2
+
+--5)    Recupere a quantidade de alunos matriculados na disciplina Banco de Dados II do curso Ciência da Computação em cada semestre letivo.
+
+select count(m.matriculaAluno), t.anoSemestre, t.numeroSemestre
+from Matricula m join Turma t on (t.codigoCurso= m.codigoCurso, t.codigoDisciplina=m.codigoDisciplina, t.numero=m.numeroTurma, t.numeroSubTurma=m.numeroSubTurma, t.anoSemestre=m.anoSemestre, t.numeroSemestre=m.numeroSemestre)
+join Disciplina di on m.codigoDisciplina = di.codigo join Curso cu on cu.codigo = di.codigoCurso
+where di.nome = upper('banco de dados II') and cu.nome = upper('ciência da computação')
+group by t.anoSemestre,t.numeroSemestre
+
+--6)    Recupere o CPF e nome dos professores que reprovaram mais de 2 alunos em um semestre (reprovação => nota < 7.0). Mostrar também a ano e semestre das reprovações.
+
+select p.cpf, p.nome, m.anoSemestre, m.numeroSemestre, count(*) as reprovados
+from professor p join vinculo v on (p.cpf = v.cpfProfessor) join disciplina d on (d.codigo = v.codigoDisciplina) join matricula m on (d.codigoCurso = m.codigoCurso and d.codigo = m.codigoDisciplina)
+where m.notaFinal < 7
+group by p.cpf, p.nome, m.anoSemestre, m.numeroSemestre
+having count(*) > 2
+
+--7)    Recupere o código da disciplina, nome da disciplina, código do curso, número de alunos matriculados na disciplina e a média das notas dos alunos matriculados na disciplina.
+select c.codigo, c.nome,d.codigo,d.nome,count(*),avg(notaFinal) as media
+from curso c join disciplina d on(d.codigoCurso = c.codigo)join matricula m on (d.codigoCurso = m.codigoCurso and d.codigo = m.codigoDisciplina)
+group by c.codigo,c.nome,d.codigo,d.nome
+order by media
+--8)    Recupere os professores do curso de Ciência da Computação, em ordem alfabética. A lista deve conter todos os atributos de Professor e o código do departamento onde ele está vinculado.
+
+select distinct p.* 
+from professor p join vinculo v on (p.cpf = v.cpfProfessor) join disciplina d on (d.codigo = v.codigoDisciplina and d.codigoCurso = v.codigoCurso) join curso c on (d.codigoCurso = c.codigo)
+where c.nome = upper('Ciência da Computação')
+order by p.nome
+
+--9)    Recupere os alunos que tiveram faltas. A lista deve conter nome do curso, nome da disciplina, nome do aluno e número de faltas. Ordenar a relação de forma decrescente, de acordo com número de faltas.
+--aluno frequencia disciplina

@@ -1,0 +1,97 @@
+--Tiago Heinrich
+--BAN2
+--1)      Recupere o CPF e o nome dos mecânicos que trabalham nos setores número 1 e 2 (faça a consulta utilizado a cláusula IN).
+
+select m.cpf, m.nome
+from Mecanico m
+where m.cods in (1,2)
+--2)      Recupere o CPF e o nome dos mecânicos que trabalham nos setores 'Funilaria' e 'Pintura' (faça a consulta utilizando sub-consultas aninhadas).
+
+select m.cpf, m.nome
+from Mecanico m
+where m.cods in (select s.cods from Setor s where s.nome = 'Funilaria' or s.nome = 'Pintura')
+
+--3)      Recupere o CPF e nome dos mecânicos que atenderam no dia 13/06/2014 (faça a consulta usando INNER JOIN).
+
+select m.cpf, m.nome
+from Mecanico m join Conserto c on m.codm = c.codm
+where c.data = '13/06/2014'
+
+--4)      Recupere o nome do mecânico, o nome do cliente e a hora do conserto para os consertos realizados no dia 12/06/2014 (faça a consulta usando INNER JOIN).
+
+select m.nome, cl.nome, c.hora
+from Mecanico m join Conserto c on m.codm = c.codm join Cliente cl on c.codv = cl.codv
+where c.data = '12/06/2014'
+
+--5)      Recupere o nome e a função de todos os mecânicos, e o número e o nome dos setores para os mecânicos que tenham essa informação.
+
+Select m.nome, m.funcao, s.cods, s.nome
+from Mecanico m left join Setor s on m.cods = s.cods
+
+--6)      Recupere o nome de todos os mecânicos, e as datas dos consertos para os mecânicos que têm consertos feitos (deve aparecer apenas um registro de nome de mecânico para cada data de conserto).
+
+select distinct m.nome, c.data
+from Mecanico m left join Conserto c on m.codm = c.codm
+
+--7)      Recupere a média da quilometragem de todos os veículos dos clientes.
+
+select avg(quilometragem)
+from Veiculo
+
+--8)      Recupere a soma da quilometragem dos veículos de cada cidade onde residem seus proprietários.
+
+select sum(quilometragem)
+from Veiculo v join Cliente c on v.codv = c.codv
+group by c.cidade
+
+--9)      Recupere a quantidade de consertos feitos por cada mecânico durante o período de 12/06/2014 até 19/06/2014
+
+select m.nome, count(c.codm) from Conserto c join Mecanico m on c.codm = m.codm
+where c.data between '12/06/2014' and '19/06/2014'
+group by m.nome
+
+--10)   Recupere a quantidade de consertos feitos agrupada pela marca do veículo.
+
+select v.marca, count(c.codv) from Veiculo v join Conserto c on v.codv = c.codv
+group by v.marca
+
+--11)   Recupere o modelo, a marca e o ano dos veículos que têm quilometragem maior que a média de quilometragem de todos os veículos.
+
+select v.modelo, v.marca, v.ano from Veiculo v
+where v.quilometragem > (select avg(v2.quilometragem) from Veiculo v2)
+
+--12)   Recupere o nome dos mecânicos que têm mais de um conserto marcado para o mesmo dia.
+
+select distinct m.nome
+from mecanico m join conserto c using (codm)
+group by c.data m.nome
+having count (1) > 1
+
+
+Descrição: Considerando o esquema da mecânica automotiva, faça a especificação dos comandos SQL para as seguintes consultas:
+
+1)      Recupere o CPF e o nome dos mecânicos que trabalham nos setores número 1 e 2 (faça a consulta utilizado a cláusula IN).
+
+2)      Recupere o CPF e o nome dos mecânicos que trabalham nos setores 'Funilaria' e 'Pintura' (faça a consulta utilizando sub-consultas aninhadas).
+
+3)      Recupere o CPF e nome dos mecânicos que atenderam no dia 13/06/2014 (faça a consulta usando INNER JOIN).
+
+4)      Recupere o nome do mecânico, o nome do cliente e a hora do conserto para os consertos realizados no dia 12/06/2014 (faça a consulta usando INNER JOIN).
+
+5)      Recupere o nome e a função de todos os mecânicos, e o número e o nome dos setores para os mecânicos que tenham essa informação.
+
+6)      Recupere o nome de todos os mecânicos, e as datas dos consertos para os mecânicos que têm consertos feitos (deve aparecer apenas um registro de nome de mecânico para cada data de conserto).
+
+7)      Recupere a média da quilometragem de todos os veículos dos clientes.
+
+8)      Recupere a soma da quilometragem dos veículos de cada cidade onde residem seus proprietários.
+
+9)      Recupere a quantidade de consertos feitos por cada mecânico durante o período de 12/06/2014 até 19/06/2014
+
+10)   Recupere a quantidade de consertos feitos agrupada pela marca do veículo.
+
+11)   Recupere o modelo, a marca e o ano dos veículos que têm quilometragem maior que a média de quilometragem de todos os veículos.
+
+12)   Recupere o nome dos mecânicos que têm mais de um conserto marcado para o mesmo dia.
+
+

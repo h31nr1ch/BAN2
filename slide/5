@@ -1,0 +1,456 @@
+estudar having 
+	in
+	consulta alinhada
+	left join
+exe2
+1select nome endereço
+from cliente
+
+2select nome função
+fRom mecanicos
+where cods =2
+
+3select m.cpf m.nome 
+from mecanicos m join clientes c on (m.cpf=c.cpf)
+where
+
+4select cidade fRom cliente union select cidade fRom mecanico
+
+5select distinct v.marca
+from veiculo v join cliente c on (v.codv=c.codv)
+where c.cidade = 'joinville'
+
+6select distinct m.funções
+fRom mecanicos
+
+7select *
+fRom clientes
+where idade > 25
+
+8 select cpf nome
+fRom mecanicos
+where cods = 'maquinas'
+
+9 select m.cpf, m.nome
+from mecanicos m join conserto c on (m.codm= c.codm)
+where data = '13/06/2014'
+
+10 select c.nome, m.modelo,m1.nome, m1.funcao
+fRom cliente c join veiculo v on (v.codv=c.codv) join mecanico m on (m.codv=vcodv)
+
+11 select m.nome, c.nome, co.hora
+fRom mecanico m join cliente c on (c.cpf=m.cpf) join conserto co on(m.codm=co.codm)
+where co.data = '19/06/2014'
+
+12 select s.cods, s.nome
+fRom setor s join mecanico m on(m.cods=s.cods) join conserto c on (
+c.codm=m.codm)
+where c.data between('12/06/2014' AND '14/06/2014') 
+
+exe3
+1  select m.cpf, m.nome
+fRom mecanicos
+where m.cods in (1,2)
+
+2 select m.cpf,m.nome
+fRom mecanicos m
+where cods in (select s.cods fRom setores s where s.nome = 'funilaria' or s.função = 'pintura')
+
+3 select m.cpf, m.nome 
+fRom mecanicos m inner join conserto c on (m.codm=c.codm)
+where c.data = '13/06/2014'
+
+4 select m.nome, c.nome, co.hora
+fRom mecanico m join conserto co on (m.codm=co.codm) join cliente c on (c.codv=co.codv)
+where co.data = '12/06/2014'
+
+5 select m.nome,m.funcao, s.cods s.nome
+fRom mecanicos m join setor s on (m.cods=s.cods)
+
+6 select distinct m.nome, c.data
+from mecanico m left join conserto c on (m.codm=c.codm)
+
+7 select avg(v.quilometragem)
+fRom veiculo v
+
+8 select sum(v.quilometragem)
+from veiculo v join cliente c on(v.codv=c.codv)
+group by c.cidade
+
+9 select m.nome, count(c.codm)
+from mecanico m join conserto c on (m.codm=c.codm)
+where c.data between ('12/06/2014' and '19/06/2014')
+group by m.nome
+
+10 select v.modelo, count(c.codv)
+from conserto c join veiculo on (v.codv=c.codv)
+group by v.modelo 
+
+11 select v.modelo,v.marca,v.ano
+from veiculo v
+where v.quilometragem > (select avg(v2.count(quilometragem)from veiculo v2)
+
+12 select distinct m.nome
+fRom mecanico m join conserto c (m.codm=c.codm)
+group by m.nome m.data
+having count (1)>1
+
+exe 5//criação de visões
+
+create view meca1 (name,function) as select name function from mecanico
+
+create view clientess(nome,modelo,marca) as
+select c.nome,v.modelo,v.marca
+fRom cliente c join veiculos v using (codv)
+
+create view info(nome,nomecliente,modelo,data,hora) as 
+select m.nome,c.nome,v.modelo,co.data,co.hora
+fRom mecanico m join cliente c on (m.codm=c.codm) join veiculo v on 
+(v.codv=c.codv)join conserto co on (c.codv=co.codv)
+
+create view inFo(ano,media) as
+select v.ano, avg(v.quilometragem) 
+fRom veiculo
+group by v.ano
+
+create view algo(nome,total,data)as
+select m.mecanico, count(*),co.data
+from mecanico m join conserto co using (codm)
+group by m.nome, co.data
+
+create view algo(nome,conserto,data) as
+select s.nome,count(*),co.data
+from mecanico m join conserto co using (codm) join setor using (cods)
+group by s.nome,co.data
+
+create view algo(nome,função)as
+select m.função,count(*)
+fRom mecamico m
+
+create view algo(nome,funções,nomesetor,numerosetor)as
+select m.nome,m.fUnção,s.nome,s.cods
+fRom mecanico m left join setor s using(cods)
+
+create view algo (funções,conserto,nome)as
+selection m.função,count(*),m.nome
+from mecanico m join conserto co using (codm)
+group by m.função,m.nome
+
+exe9
+
+create or replace function insert(cods int, nome setor.nome%TYPE) returns void as
+$$
+begin
+	insert into setor values  ($1,$2);
+	return;
+	return;
+end;
+$$
+language plpgsql;
+
+create or replace function exclu(cods int)
+returns void as
+$$
+begin
+	delete from setor where cods=$1;
+	return;
+end;
+$$
+language plpgsql;
+
+create or replace function(codm int, cpf bigint , nome mecanico.nome%TYPE, idade int, endereco mecanico.endereco%TYPE,cidade mecanico.cidade%TYPE, funcao mecanico.funcao%TYPE, cods int) returns void as
+$$
+begin
+	insert into mecanico ($1,$2,$3,$4,$5,$6,$7,$8);
+	return;
+end;
+$$
+language plpgsql;
+
+create or replace function(codms int)returns void as
+$$
+begin
+	delete from mecanico where codm = $1;
+		return;
+end;
+$$
+language plpgsql;
+
+create or replace function (codc int, cpf bigint, nome cliente.nome%TYPE, idade int, endereco cliente.endereco%TYPE, cidade cliente.cidade%TYPE, codv int ) RETURNS void AS
+$$
+begin
+	insert into cliente values ($1,$2,$3,$4,$5,$6,$7);
+	return;
+end;
+$$
+languagem plpgsql;
+
+create or replace function (codcs int)returns void as
+$$
+begin
+	delete from cliente where codc=$1;
+	return;
+end;
+$$
+languagem plpgsql;
+
+create or replace function (codv int, renavam bigint, modelo veiculo.modelo%TYPE, marca veiculo.marca%TYPE, ano int, quilometragem veiculo.quilometragem%TYPE) returns void as
+$$
+begin
+	insert into veiculo valures ($1,$2,$3,$4,$5,$6);
+	return;
+end;
+$$
+languagem plpgsql;
+
+create or replace function (codvs int) return void as
+$$
+begin
+	delete from veiculos where codv=$1;
+	return;
+end;
+$$
+languagem plpgsql;
+
+create or replace function (codm int, codv int, data conserto.data%TYPE, hora conserto.hora%TYPE) returns void as
+$$
+begin
+	insert into conserto ($1,$2,$3,$4);
+	return;
+end;
+$$
+languagem plpgsql;
+
+create or replace function (codms int, codvs int) returns void as
+$$
+begin
+	delete from conserto where codv=$1, codv=$2;
+	return;
+end;
+$$
+
+create or replace function
+
+
+--6)      Função para calcular a média geral de idade dos Mecânicos e Clientes.
+
+CREATE OR REPLACE FUNCTION media_geral() RETURNS float AS
+$$
+DECLARE 
+vidade int default 0;
+b int default 0;
+quanti int default 0;
+resultado float default 0;
+BEGIN
+FOR vidade IN SELECT idade FROM Cliente LOOP
+    b:=b+vidade;
+    quanti := quanti+1;
+END LOOP;
+FOR vidade IN SELECT idade FROM Mecanico LOOP
+    b:=b+vidade;
+    quanti := quanti+1;
+END LOOP;
+resultado := b/quanti;
+raise notice 'a = %', resultado;
+RETURN resultado;
+END;
+$$
+
+
+--7)      Uma única função que permita fazer exclusão de um Setor, Mecânico, Cliente ou Veículo.
+
+CREATE OR REPLACE FUNCTION exclui_algo(cods int, codm int, codc int, codv int) RETURNS void AS
+$$
+BEGIN
+
+if cods<>0 then
+    execute exclui_setor(cods);
+end if;
+if codm<>0 then
+    execute exclui_mecanico(codm);
+end if;
+if codc<>0 then
+    execute exclui_cliente(codc);
+end if;
+if codc<>0 then
+    execute exclui_veiculo(codv);
+end if;
+RETURN;
+END;
+$$
+LANGUAGE plpgsql;
+
+
+--8)      Considerando que na tabela Cliente apenas codc é a chave primária, faça uma função que remova clientes com CPF repetido, deixando apenas um cadastro para cada CPF. Escolha o critério que preferir para definir qual cadastro será mantido: aquele com a menor idade, que possuir mais consertos agendados, etc. Para testar a função, não se esqueça de inserir na tabela alguns clientes com este problema.
+
+CREATE OR REPLACE FUNCTION exclui_cpf() RETURNS integer AS
+$$
+DECLARE 
+a cliente%ROWTYPE;
+b cliente%ROWTYPE;
+cont integer default 1;
+x integer default 1;
+linhas integer default 0;
+BEGIN
+FOR a IN SELECT * FROM Cliente LOOP
+    FOR b IN SELECT * FROM Cliente LOOP
+        if x>cont then
+            if a.cpf = b.cpf then
+                execute exclui_cliente(a.codc);
+                linhas:=linhas+1;
+            end if;    
+        end if;
+        x := x + 1;        
+    END LOOP;
+    x := 1;
+    cont := cont + 1;
+    
+END LOOP;
+RETURN linhas;
+END;
+$$    
+LANGUAGE plpgsql;
+
+
+--9)   Função para calcular se o CPF é válido*.
+
+
+CREATE OR REPLACE FUNCTION verifica_cpf(cpf varchar(11)) RETURNS char(1) AS
+$$
+DECLARE 
+indice integer;
+soma int;
+dig1 int;
+dig2 int;
+cpf_temp varchar(11);
+digitos_iguais char(1);
+resultado char(2);
+BEGIN
+set resultado = 'N';
+SELECT cpf_temp = SUBSTRING(cpf ,1 , 1 );
+set indice = 1;
+set digitos_iguais = 'S';
+
+while (indice < 11) LOOP
+    if substring(cpf,indice,1) <> cpf_temp then
+        set digitos_iguais = 'N';
+    end if;
+        indice = indice+1;
+end loop;
+if digitos_iguais = 'N' then        
+    set soma = 0;
+    set indice = 1;
+    while(indice <= 9) LOOP
+    soma := soma + convert(int, substring(cpf, indice, 1)) * (11-indice);
+    indice := indice + 1;
+    end LOOP;
+end if;
+dig1 = 11-(soma % 11);
+
+if dig1 > 9 then
+set dig1 = 0;
+end if;
+set soma = 0;
+set indice = 1;
+while(indice <= 10) LOOP
+soma := soma + convert(int, substring(cpf, indice, 1)) * (12 - indice);
+indice = indice + 1;
+end LOOP;
+dig2 = 11-(soma%11);
+if dig2 > 9 then
+set dig2 = 0;
+end if;
+
+if (dig1 = substring(cpf, len(cpf)-1, 1)) and (dig2 = substring(cpf, len(cpf),1)) then
+    set resultado = 'S';
+else
+    set resultado = 'N';
+end if;
+RETURN resultado;
+END;
+$$    
+LANGUAGE plpgsql;
+
+exe10
+
+create or replace function insecpf()returns trigger as
+$$
+begin
+	if(select 1 from cliente where cliente.cpf=new.cpf)then
+	raise exception 'n pode n';
+	return null;
+end;
+$$
+languagem plpgsql;
+create trigger insecpf() before insert or update on cliente for each row execute procedure insecpf();
+
+exe4
+
+select * 
+from professor p join departamento d on(d.codigo=p.codigodepartamento)
+where d.nome = 'CIÊNCIA DA COMPUTAÇÃO'
+
+select p.CPF, p.nome,p.endereço
+from professor p join departamento d on(d.codigo=p.codigodepartamento)
+where d.nome = 'Administração'
+
+select d.nome
+from curso c join disciplina d on(c.codigo=d.codigo)
+where c.nome = 'FISICA' or c.nome = 'CIÊNCIA DA COMPUTAÇÃO'
+
+SELECT DISTINCT a.nome, m.anoSemestre, a.matricula, d.codigo, d.nome, c.codigo FROM Curso c
+    JOIN Disciplina d ON c.codigo = d.codigoCurso 
+    JOIN Turma t ON t.codigoDisciplina = d.codigo 
+    JOIN Matricula m ON m.numeroTurma = t.numero 
+    JOIN Aluno a ON a.matricula = m.matriculaAluno
+    WHERE d.nome = upper('Engenharia de software') AND m.anoSemestre = '2012' AND m.numeroSemestre = '2'
+
+5)    Recupere a quantidade de alunos matriculados na disciplina Banco de Dados II do curso Ciência da Computação em cada semestre letivo.
+SELECT m.anoSemestre, m.numeroSemestre, count(a.nome) FROM disciplina d 
+    JOIN Matricula  m ON(m.codigoDisciplina = d.codigo and d.codigoCurso = m.codigoCurso)
+        JOIN Aluno a ON (a.matricula = m.matriculaAluno)
+    WHERE d.nome = 'BANCO DE DADOS II'
+    group by m.anoSemestre, m.numeroSemestre
+
+
+
+
+6)    Recupere o CPF e nome dos professores que reprovaram mais de 2 alunos em um semestre (reprovação => nota < 7.0). Mostrar também a ano e semestre das reprovações.
+SELECT p.cpf, p.nome, m.anoSemestre, m.numeroSemestre, count(*) as reprovados
+from professor p join vinculo v on (p.cpf= v.cpfProfessor) join disciplina d on
+(d.codigo=v.codigoDisciplina) join matricula m on (d.codigoCurso = m.codigoCurso
+and d.codigo=m.codigoDisciplina) where m.notaFInal < 7 group by
+p.cpf, p.nome, m.anoSemestre, m.numeroSemestre having count(*) > 2
+
+
+
+7)    Recupere o código da disciplina, nome da disciplina, código do curso, número de alunos matriculados na disciplina e a média das notas dos alunos matriculados na disciplina.
+SELECT d.codigo, c.nome, d.nome, c.codigo, count(m.matriculaAluno), AVG(m.notaFinal) as media FROM Curso c
+    JOIN Disciplina d ON(c.codigo = d.codigoCurso)
+    JOIN Matricula  m ON(m.codigoDisciplina = d.codigo and d.codigoCurso = m.codigoCurso)
+    JOIN Aluno a ON (a.matricula = m.matriculaAluno)
+    group by d.codigo, d.nome, c.codigo, c.nome order by (media)
+
+
+
+8)    Recupere os professores do curso de Ciência da Computação, em ordem alfabética. A lista deve conter todos os atributos de Professor e o código do departamento onde ele está vinculado.
+SELECT DISTINCT c.nome, p.* FROM Professor p 
+    JOIN Vinculo v ON(p.cpf=v.cpfProfessor) 
+    JOIN Curso c ON (v.codigoCurso = c.codigo) 
+    WHERE c.nome = 'CIÊNCIA DA COMPUTAÇÃO'
+
+9)    Recupere os alunos que tiveram faltas. A lista deve conter nome do curso, nome da disciplina, nome do aluno e número de faltas. Ordenar a relação de forma decrescente, de acordo com número de faltas.
+select c.nome, d.nome, a.nome, count(*) as faltas from aluno a join frequencia f on (a.matricula=f.matriculaAluno)
+    join disciplina d on (d.codigo = f.codigoDisciplina)
+        join curso c on (c.codigo=d.codigoCurso)
+where f.indPresenca='N'
+group by c.nome, d.nome, a.nome
+
+
+
+
+
+
+
+
+
