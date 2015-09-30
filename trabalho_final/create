@@ -73,8 +73,8 @@ num_matricula referencia FUNCIONARIOS
 */
 create table afiliacao(num_matricula int,num_membro int,num_sindicato int,
 PRIMARY KEY (num_matricula),
-FOREIGN KEY (num_matricula) REFERENCES funcionarios(num_matricula),
-FOREIGN KEY (num_sindicato) REFERENCES sindicatos(num_sindicato)
+FOREIGN KEY (num_matricula) REFERENCES funcionarios(num_matricula)/*,
+FOREIGN KEY (num_sindicato) REFERENCES sindicatos(num_sindicato)*/
 );
 /*
 AFILICAÇÃO
@@ -83,8 +83,7 @@ num_matricula referencia FUNCIONARIOS
 num_sindicato referencia SINDICATO
 */
 create table pericia(num_matricula int,cod_modelo int,
-PRIMARY KEY (num_matricula),
-PRIMARY KEY (cod_modelo),
+PRIMARY KEY (num_matricula,cod_modelo),
 FOREIGN KEY (num_matricula) REFERENCES funcionarios(num_matricula),
 FOREIGN KEY (cod_modelo) REFERENCES modelos(cod_modelo)
 );
