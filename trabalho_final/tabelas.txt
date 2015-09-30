@@ -1,0 +1,40 @@
+AVIÃO
+#registro, cod_modelo
+cod_modelo referencia MODELOS
+
+MODELOS
+#cod_modelo, peso, capacidade
+
+FUNCIONÁRIOS
+#num_matricula, nome
+
+TECNICOS
+#num_matricula, endereço, telefone, salário
+num_matricula referencia FUNCIONARIOS
+
+CONTROLADORES
+#num_matricula, data_exame
+num_matricula referencia FUNCIONARIOS
+
+SINDICATOS
+#num_sindicado, nome
+
+AFILICAÇÃO
+#num_matricula, num_membro, num_sindicato
+num_matricula referencia FUNCIONARIOS
+num_sindicato referencia SINDICATO
+
+PERICIA
+#num_matricula, #cod_modelo
+cod_modelo referencia MODELOS
+num_matricula referencia FUNCIONARIOS
+
+TESTES
+#num_anac, nome, pont_max
+
+MANUNTENÇAO
+#num_anac, cod_modelo, num_matricula, data_teste, horas_gastas, pontuacao
+num_anac referencia TESTES
+cod_modelo referencia MODELOS
+num_matricula referencia FUNCIONARIOS
+
