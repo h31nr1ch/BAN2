@@ -73,8 +73,8 @@ num_matricula referencia FUNCIONARIOS
 */
 create table afiliacao(num_matricula int,num_membro int,num_sindicato int,
 PRIMARY KEY (num_matricula),
-FOREIGN KEY (num_matricula) REFERENCES funcionarios(num_matricula)/*,
-FOREIGN KEY (num_sindicato) REFERENCES sindicatos(num_sindicato)*/
+FOREIGN KEY (num_matricula) REFERENCES funcionarios(num_matricula),
+FOREIGN KEY (num_sindicato) REFERENCES sindicatos(num_sindicado)
 );
 /*
 AFILICAÇÃO
