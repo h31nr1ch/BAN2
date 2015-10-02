@@ -1,0 +1,38 @@
+Tiago Heinrich
+
+1- 
+a) Atualização perdida
+
+b) Atualização Temporária
+
+c) Agregação Incorreta
+
+
+2-
+a)
+x1 = SPIDERMAN
+x2 = SPIDERMAN
+b)
+x1 = SPIDERMAN
+x2 = ESPERA ATÉ TER COMMIT OU ROLLBACK
+x3 = ESPERA ATÉ TER COMMIT OU ROLLBACK
+x4 = 100
+x5 = Peter Parker
+
+3-
+Sim Sim Sim
+Não Sim Sim
+Não Não Sim
+Não Não Não
+
+4-
+C) Durabilidade
+
+5-
+C) Phantom Read
+
+6-
+A) O usuário B irá ler, como saldo em estoque do produto X,o valor que foi atualizado pela transação de A.
+
+
+

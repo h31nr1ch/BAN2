@@ -1,0 +1,57 @@
+Tiago Heinrich
+
+1)     Insira todos os mecânicos e setores de uma única transação.
+BEGIN TRANSACTION ;
+
+INSERT INTO Setor (cods,nome)
+VALUES (‘1’,’Elétrica’), (‘2’,’Mecânica’),(‘3’,’Funilaria’),(‘4’,’Pintura’); 
+INSERT INTO Mecânico (codm,cpf,nome,idade,Endereço,cidade,função,cods)
+VALUES(‘1’,’10000100000’,’João’,’40’,’América’,’Joinville’,’som’,’1’),(‘2’,’10000110000’,’Luiz’,’42’,’Vila Nova’,’Joinville’,’motor’,’2’),(‘3’,’11000100000’,’Pedro’,’51’,’Cobrassol’,’São José’,’câmbio’,’2’),(‘4’,’11000110000’,’Carlos’,’28’,’Trindade’,’Florianópolis’,’estofado’,’NULL’),(‘5’,’11000111000’,’Márcio’,’33’,’Pantanal’,’Florianópolis’,’desamassa’,’3’);
+
+COMMIT TRANSACTION ;
+
+2)      Insira os clientes e seus consertos em uma única transação.
+BEGIN TRANSACTION ;
+INSERT INTO cliente (codc,cpf,nome,idade,endereço,cidade,codv)
+VALUES(‘1’,’20000200000’,’Ana’,’20’,’América’,’Joinville’.’1’),(‘2’,’20000220000’,’Paulo’,’24’,’Saguaçú’,’Joinville’,’2’),(‘3’,’22000200000’,’Lucia’,’30’,’Vila Nova’,’Joinville’,’3’),(‘4’,’11000110000’,’Carlos’,’28’,’Trindade’,’Florianópolis’,’4’),(‘5’,’51000110000’,’Carlos’,’44’,’Centro’,‘Florianópolis’,’5’),(‘6’,’71000111000’,’João’,’38’,’Praia’,’Comprida’,’São José’,’6’),(‘7’,’10000110000’,’Luiz’,’42’,’Vila Nova’,’Joinville’,’7’);
+
+COMMIT TRANSACTION ;
+3)      Incremente em 1 a idade dos mecânicos e clientes em uma única transação.
+BEGIN TRANSACTION ;
+
+UPDATE cliente
+DECLARE @counter int
+SET @counter = idade;
+SET @counter = counter = @counter + 1
+SET idade=@count;
+
+UPDATE mecanico
+DECLARE @counter1 int
+SET @counter1 = idade;
+SET @counter1 = counter1= @counter1 + 1
+SET idade=@count1;
+
+COMMIT TRANSACTION ;
+4)      Insira um novo setor com cods 5 e atualize os mecânicos alocados ao setor 2 para 5 em uma única transação.
+BEGIN TRANSACTION ;
+INSERT INTO mecanicos(cods) values (5);
+update mecanicos set setor=5 where setor=2;
+COMMIT TRANSACTION ;
+5)      Atualize o nome das cidades dos mecânicos e clientes para maiúsculo em uma única transação.
+BEGIN TRANSACTION ;
+UPDATE mecanicos SET cidade = upper(cidade)
+UPDATE clientes SET clidade = upper(cidade)
+COMMIT TRANSACTION ;
+
+6)      Concatene na frente do nome dos mecânicos a abreviação 'Mec. ' e no nome do clientes a abreviação 'Cli. ' em uma única transação.
+BEGIN TRANSACTION ;
+UPDATE mecanicos SET nome = (concat(nome,”Mec. ”),nome)
+UPDATE cliente SET nome = (concat(nome,”Cli. ”),nome)
+COMMIT TRANSACTION ;
+
+7)      Atualize o cods dos mecânicos alocados no setor 3 para 4 e exclua o setor de cods 3.
+BEGIN TRANSACTION ;
+UPDATE mecanicos SET setor=4 where setor=3;
+DELETE FROM mecanicos WHERE setor=3; 
+COMMIT TRANSACTION ;
+
