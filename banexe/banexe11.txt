@@ -1,0 +1,29 @@
+Tiago Heinrich
+
+Descrição: Considerando o BD da oficina mecânica, faça a especificação dos comandos SQL para criação de índices conforme descrito abaixo.
+
+1)      Crie um índice para cada uma das chaves estrangeiras presentes do esquema de dados.
+
+CREATE INDEX cods ON setor USING BTREE (cods);
+CREATE INDEX codv ON Veiculo USING BTREE (codv);
+CREATE INDEX codm ON Mecanico USING BTREE (codm);
+
+2)      Crie um índice para acelerar a busca dos mecânicos pela função.
+
+CREATE INDEX funcao ON Mecanico USING BTREE (funcao);
+
+3)      Crie um índice para acelerar a ordenação dos consertos pela data e hora.
+
+CREATE INDEX consertos ON Conserto USING BTREE (data,hora);
+
+4)      Crie um índice para acelerar a busca de clientes pelo cpf.
+
+CREATE INDEX UNIQUE idx_pessoa_cpf ON cliente USING BTREE (cpf);
+
+5)      Crie um índice para acelerar a busca pelas primeiras 5 letras do nome dos pacientes.
+
+CREATE UNIQUE INDEX ind_nome ON pacientes USING GIN (nome) WHERE nome iLIKE '_____';
+
+6)      Crie um índice para acelerar a busca dos clientes com CPF com final XXX.XXX.XXX-55.
+
+CREATE UNIQUE INDEX id_cpf ON cliente USING GIN (cpf) WHERE nome iLIKE '%-55';
