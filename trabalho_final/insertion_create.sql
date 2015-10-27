@@ -1,3 +1,8 @@
+/*
+A dupla de alunos deve especificar um conjunto (no mínimo 4) de funções e gatilhos associados 
+a implementação de restrições de integridade adicionais ou a automatização no lado servidor de 
+alguma parte do processamento de dados requisitado pelo sistema.
+*/
 create table modelos(cod_modelo int,peso double,capacidade int,
 PRIMARY KEY (cod_modelo)
 );
@@ -155,4 +160,3 @@ insert into pericia values (7,8);
 insert into pericia values (8,9);
 insert into pericia values (9,10);
 insert into pericia values (10,1);
-
