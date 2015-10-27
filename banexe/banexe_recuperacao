@@ -1,0 +1,14 @@
+Tiago Heinrich
+
+1)     A figura abaixo mostra o log correspondente a determinado plano, para quatro transações T1, T2, T3 e T4, no ponto da queda do sistema. Suponha que foi utilizado o protocolo de atualização imediata com checkpoint. Descreva o processo para recuperação da queda do sistema. Especifique quais transações serão desfeitas ou refeitas e quais são os valores das variáveis após o processo de recuperação.
+
+
+T1 = terminou não sofre alterações 
+T2 = UNDO
+T3 = REDO
+T4 = UNDO (?)
+2) (Questão de múltipla escolha) No caso da transação falhar sob um esquema de log incremental deatualização adiada, qual das seguintes opções seria necessária:
+Operações desfazer e refazer.
+3)     (Questão de múltipla escolha) Há possibilidade de reversão (rollback) em cascata quando…
+Uma transação grava itens que tenham sido gravados apenas por uma transação efetivada.
+
