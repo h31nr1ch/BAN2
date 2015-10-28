@@ -1,4 +1,4 @@
---1)      Função para inserção e exclusão de um Setor.
+   --1)      Função para inserção e exclusão de um Setor.
 CREATE OR REPLACE FUNCTION insere_setor(cods int, nome setor.nome%TYPE) RETURNS void AS
 $$
 BEGIN

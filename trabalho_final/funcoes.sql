@@ -4,8 +4,27 @@ RETURN (SELECT *
         FROM  testes
         WHERE pont_max >= 8)
 
-CREATE FUNCTION salario_null () 
-RETURNS  
-    delete FROM tecnicos
-        WHERE tecnicos.salario <= 0;
+DELIMITER $$
+CREATE TRIGGER DELLpesoNeg
+BEFORE UPDATE ON modelos
+FOR EACH ROW BEGIN
+delete from modelos where modelos.capacidade < 0;
+ END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER testnegativo
+BEFORE UPDATE ON testes
+FOR EACH ROW BEGIN
+delete from testes where testes.pont_max < 0;
+ END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER salarionegativo
+BEFORE UPDATE ON tecnicos
+FOR EACH ROW BEGIN
+delete from tecnicos where tecnicos.pont_max < 0;
+ END$$
+DELIMITER ;
 
