@@ -35,12 +35,21 @@ def create_tables(c):
 #	c.execute("create table manutencao(num_anac int,cod_modelo int,num_matricula int,data_teste varchar(8),horas_gastas double,pontuacao int,PRIMARY KEY (num_anac),FOREIGN KEY (num_anac),FOREIGN KEY (cod_modelo),FOREIGN KEY (num_matricula));")
 #	c.execute("insert into manutencao values (5,5,5,'10082015',2,10);")
 #	con.commit()
+	c.execute("create table manutencao(num_anac int,cod_modelo int,num_matricula int,data_teste varchar(8),horas_gastas double,pontuacao int,PRIMARY KEY (num_anac));")
+	c.execute("insert into manutencao values (5,5,5,'10082015',2,10);")
+	con.commit()
 #	c.execute("create table afiliacao(num_matricula int,num_membro int,num_sindicato int,PRIMARY KEY (num_matricula),FOREIGN KEY (num_matricula),FOREIGN KEY (num_sindicato));")
 #	c.execute("insert into afiliacao values (8,18,109);")
 #	con.commit()
+	c.execute("create table afiliacao(num_matricula int,num_membro int,num_sindicato int,PRIMARY KEY (num_matricula));")
+	c.execute("insert into afiliacao values (8,18,109);")
+	con.commit()
 #	c.execute("create table pericia(num_matricula int,cod_modelo int,PRIMARY KEY (num_matricula,cod_modelo),FOREIGN KEY (num_matricula),FOREIGN KEY (cod_modelo));")
 #	c.execute("insert into pericia values (4,5);")
 #	con.commit()
+	c.execute("create table pericia(num_matricula int,cod_modelo int,PRIMARY KEY (num_matricula,cod_modelo));")
+	c.execute("insert into pericia values (4,5);")
+	con.commit()
 
 def aprovados(c):
 	sql=c.execute("SELECT nome FROM testes WHERE pont_max >= 8")
@@ -66,6 +75,19 @@ def TRIGGER3(c):
 
 def TRIGGER4(c):
 	sql=c.execute("delete from manutencao where manutencao.horas_gastas < 0;")
+	con.commit()
+
+def tenhado(c):
+	c.execute("drop table pericia;")
+	c.execute("drop table afiliacao;")
+	c.execute("drop table manutencao;")
+	c.execute("drop table controladores;")
+	c.execute("drop table tecnicos;")
+	c.execute("drop table funcionarios;")
+	c.execute("drop table aviao;")
+	c.execute("drop table testes;")
+	c.execute("drop table sindicatos;")
+	c.execute("drop table modelos;")
 	con.commit()
 
 def create(c):
