@@ -199,6 +199,7 @@ def insert(c,tabelas,what):
 def insert1(c,tabelas,what,what1,what2):
 	c.execute("insert into "+tabelas+" set ("+what+","+what1+","+what2+");")
 	con.commit()
+
 """
 tenhado(c)
 create_tables(c)
