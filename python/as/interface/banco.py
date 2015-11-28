@@ -192,8 +192,13 @@ def dell(c,what):
 	con.commit()
 
 def insert(c,tabelas,what):
-		c.execute("insert into "+ tabelas +" values("+ what +");")
-		con.commit()
+	#c.execute("insert into pericia values (10,1);")
+	c.execute("insert into "+tabelas+" values "+what+");")
+	con.commit()
+
+def insert1(c,tabelas,what,what1,what2):
+	c.execute("insert into "+tabelas+" set ("+what+","+what1+","+what2+");")
+	con.commit()
 """
 tenhado(c)
 create_tables(c)

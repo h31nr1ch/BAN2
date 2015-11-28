@@ -3,6 +3,7 @@ from PyQt4 import *
 from imageEditor import *
 from copy import *
 from banco import *
+import MySQLdb
 import sys
 
 
@@ -15,63 +16,68 @@ htmlPrefix = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3
 htmlSuffix = "</p></body></html>"
 """
 
+
 class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog):
     def __init__(self, parent=None):
         QtGui.QMainWindow.__init__(self)
 
         self.setupUi(self)
 	self.insert1.clicked.connect(self.insereModelos)
-	self.insert2.clicked.connect(self.insereModelos)
-	self.insert3.clicked.connect(self.insereModelos)
-	self.insert4.clicked.connect(self.insereModelos)
-	self.insert5.clicked.connect(self.insereModelos)
-	self.insert6.clicked.connect(self.insereModelos)
-	self.insert7.clicked.connect(self.insereModelos)
-	self.insert8.clicked.connect(self.insereModelos)
-	self.insert9.clicked.connect(self.insereModelos)
-	self.insert10.clicked.connect(self.insereModelos)
+	self.insert2.clicked.connect(self.insereSindicatos)
+	self.insert3.clicked.connect(self.insereTestes)
+	self.insert4.clicked.connect(self.insereAvia)
+	self.insert5.clicked.connect(self.insertFuncionario)
+	self.insert6.clicked.connect(self.insertTecnicos)
+	self.insert7.clicked.connect(self.insertControladores)
+	self.insert8.clicked.connect(self.insertManutencao)
+	self.insert9.clicked.connect(self.insertAfiliacao)
+	self.insert10.clicked.connect(self.insertPericia)
 
     def insereModelos(self):
-	tabelas = 'modelos'
-	what = self.line1.text() + ',' + self.line2.text() + ',' + self.line3.text()
-	#print what
-	insert(c,tabelas,what)
+		tabelas='modelos'
+		what='('+self.line1.text()+','+self.line2.text()+','+self.line3.text()+')'
+		print what
+		print tabelas
+		insert(c,tabelas,what)
+		con.commit()
 	
     def insereSindicatos(self):
-	tabelas = 'sindicatos'
-	what = self.line4.text() + ',' + self.line5.text()
+		tabelas = 'sindicatos'
+		what = '('+self.line4.text()+ ',' + self.line5.text()+')'
+		insert(c,tabelas,what)
+		con.commit()
 
     def insereTestes(self):
-	tabelas = 'testes'
-	what = self.line6.text() + ',' + self.line7.text() + ',' + self.line8
+		tabelas = 'testes'
+		what = '('+self.line6.text() + ',' + self.line7.text() + ',' + self.line8+')'
 
     def insereAvia(self):
-	tabelas = 'aviao' 
-	what = self.line9.text() + ',' + self.line10.text() 
+		tabelas = 'aviao' 
+		what = '('+self.line9.text() + ',' + self.line10.text() +')'
 
     def insertFuncionario(sef):
-	tabelas = 'funcionarios'
-	what = self.line11.text() + ',' + self.line12.text
+		tabelas = 'funcionarios'
+		what = '('+self.line11.text() + ',' + self.line12.text+')'
 
     def insertTecnicos(self):
-	tabelas = 'tecnicos'
-	what = self.line13.text() + ',' + self.line14.text() + ',' + self.line15.text() + ',' +self.line16.text()
+		tabelas = 'tecnicos'
+		what = '('+self.line13.text() + ',' + self.line14.text() + ',' + self.line15.text() + ',' +self.line16.text()+')'
 
     def insertControladores(self):
-	tabelas = 'controladores'
-	what = self.line17.text() + ',' +self.line18.text()
+		tabelas = 'controladores'
+		what = '('+self.line17.text() + ',' +self.line18.text()+')'
 
     def insertManutencao(self):
-	tabelas = 'manutencao'
-	what = self.line19.text() + ',' + self.line20.text() + ',' +self.line21.text() + ',' + self.line22.text() + ',' + self.line23.text() + ',' +self.line24.text()
+		tabelas = 'manutencao'
+		what = '('+self.line19.text() + ',' + self.line20.text() + ',' +self.line21.text() + ',' + self.line22.text() + ',' + self.line23.text() + ',' +self.line24.text()+')'
 
     def insertAfiliacao(self): 
-	tabelas = 'afiliacao'
-	what = self.line25.text() + ',' + self.line26.text() + ',' + self.line27.text()
+		tabelas = 'afiliacao'
+		what = '('+self.line25.text() + ',' + self.line26.text() + ',' + self.line27.text()+')'
 
     def insertPericia(self):
-	tabelas = 'pericia'
-	what = self.line28.text()+ ',' +self.line29.text()
+		tabelas = 'pericia'
+		what = '('+self.line28.text()+ ',' +self.line29.text()+')'
 
 """
     def setSecondaryBar(self):
@@ -96,6 +102,7 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog):
     def secondThresholdToggle(self):
         self.scribbler.secondToggle = not self.scribbler.secondToggle
 """
+
 
 
 class dialogBox(QtGui.QDialog):
