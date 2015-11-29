@@ -43,13 +43,13 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
 	
     def insereSindicatos(self):
 		tabelas = 'sindicatos'
-		what = '('+self.line4.text()+ ',' + self.line5.text()+')'
+		what = '('+self.line4.text()+ ','"'" + self.line5.text()+"'"')'
 		self.insert(c,tabelas,what)
 		con.commit()
 
     def insereTestes(self):
 		tabelas = 'testes'
-		what = '('+self.line6.text() + ',' + self.line7.text() + ',' + self.line8+')'
+		what = '('+self.line6.text() + ','"'"  + self.line7.text() + "'"',' + self.line8.text()+')'
 		self.insert(c,tabelas,what)
 		con.commit()
 
@@ -62,28 +62,31 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
 
     def insertFuncionario(self):
 		tabelas = 'funcionarios'
-		what = '('+self.line11.text() + ',' + self.line12.text+')'
+		what ='(' + self.line11.text() + ',' + self.line12.text() + "'" ')'
+		#erros
 		self.insert(c,tabelas,what)
 		con.commit()
 
 
     def insertTecnicos(self):
 		tabelas = 'tecnicos'
-		what = '('+self.line13.text() + ',' + self.line14.text() + ',' + self.line15.text() + ',' +self.line16.text()+')'
+		what = '('+self.line13.text() + ','"'" + self.line14.text() + "'"',' + self.line15.text() + ',' +self.line16.text()+')'
 		self.insert(c,tabelas,what)
+		#erros
 		con.commit()
 
 
     def insertControladores(self):
 		tabelas = 'controladores'
-		what = '('+self.line17.text() + ',' +self.line18.text()+')'
+		what = '('+self.line17.text() + ',' "'"+self.line18.text()+"'"')'
 		self.insert(c,tabelas,what)
+		#erros
 		con.commit()
 
 
     def insertManutencao(self):
 		tabelas = 'manutencao'
-		what = '('+self.line19.text() + ',' + self.line20.text() + ',' +self.line21.text() + ',' + self.line22.text() + ',' + self.line23.text() + ',' +self.line24.text()+')'
+		what = '('+self.line19.text() + ',' + self.line20.text() + ',' +self.line21.text() + ','"'" + self.line22.text() +"'" ',' + self.line23.text() + ',' +self.line24.text()+')'
 		self.insert(c,tabelas,what)
 		con.commit()
 
