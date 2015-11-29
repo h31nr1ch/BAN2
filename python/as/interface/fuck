@@ -48,3 +48,13 @@ Traceback (most recent call last):
   File "/usr/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
     raise errorclass, errorvalue
 _mysql_exceptions.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''asdsa')' at line 1")
+Traceback (most recent call last):
+  File "/home/lx/Udesc/BAN2/python/as/interface/masterMind.py", line 66, in insertFuncionario
+    self.insert(c,tabelas,what)
+  File "/home/lx/Udesc/BAN2/python/as/interface/banco.py", line 207, in insert
+    c.execute("insert into %s values %s;"%(tabelas,what))
+  File "/usr/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+_mysql_exceptions.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''asdsad')' at line 1")

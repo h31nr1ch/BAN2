@@ -61,8 +61,7 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
 
     def insertFuncionario(self):
 		tabelas = 'funcionarios'
-		what = '('+ self.line11.text() +',' "'"+self.line12.text()+"'" ')'
-		#erros
+		what = '('+ self.line11_2.text() +','"'"+self.line12.text()+"'"')'
 		self.insert(c,tabelas,what)
 		con.commit()
 
