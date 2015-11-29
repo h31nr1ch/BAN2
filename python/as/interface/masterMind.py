@@ -1,3 +1,4 @@
+#!/usr/bin/python2.7
 from __future__ import division
 from PyQt4 import *
 from imageEditor import *
@@ -16,8 +17,7 @@ htmlPrefix = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3
 htmlSuffix = "</p></body></html>"
 """
 
-
-class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog):
+class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
     def __init__(self, parent=None):
         QtGui.QMainWindow.__init__(self)
 
@@ -38,46 +38,69 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog):
 		what='('+self.line1.text()+','+self.line2.text()+','+self.line3.text()+')'
 		print what
 		print tabelas
-		insert(c,tabelas,what)
-		con.commit()
+		self.insert(c,tabelas,what)
+		#con.commit()
 	
     def insereSindicatos(self):
 		tabelas = 'sindicatos'
 		what = '('+self.line4.text()+ ',' + self.line5.text()+')'
-		insert(c,tabelas,what)
+		self.insert(c,tabelas,what)
 		con.commit()
 
     def insereTestes(self):
 		tabelas = 'testes'
 		what = '('+self.line6.text() + ',' + self.line7.text() + ',' + self.line8+')'
+		self.insert(c,tabelas,what)
+		con.commit()
 
     def insereAvia(self):
 		tabelas = 'aviao' 
 		what = '('+self.line9.text() + ',' + self.line10.text() +')'
+		self.insert(c,tabelas,what)
+		con.commit()
 
-    def insertFuncionario(sef):
+
+    def insertFuncionario(self):
 		tabelas = 'funcionarios'
 		what = '('+self.line11.text() + ',' + self.line12.text+')'
+		self.insert(c,tabelas,what)
+		con.commit()
+
 
     def insertTecnicos(self):
 		tabelas = 'tecnicos'
 		what = '('+self.line13.text() + ',' + self.line14.text() + ',' + self.line15.text() + ',' +self.line16.text()+')'
+		self.insert(c,tabelas,what)
+		con.commit()
+
 
     def insertControladores(self):
 		tabelas = 'controladores'
 		what = '('+self.line17.text() + ',' +self.line18.text()+')'
+		self.insert(c,tabelas,what)
+		con.commit()
+
 
     def insertManutencao(self):
 		tabelas = 'manutencao'
 		what = '('+self.line19.text() + ',' + self.line20.text() + ',' +self.line21.text() + ',' + self.line22.text() + ',' + self.line23.text() + ',' +self.line24.text()+')'
+		self.insert(c,tabelas,what)
+		con.commit()
+
 
     def insertAfiliacao(self): 
 		tabelas = 'afiliacao'
 		what = '('+self.line25.text() + ',' + self.line26.text() + ',' + self.line27.text()+')'
+		self.insert(c,tabelas,what)
+		con.commit()
+
 
     def insertPericia(self):
 		tabelas = 'pericia'
 		what = '('+self.line28.text()+ ',' +self.line29.text()+')'
+		self.insert(c,tabelas,what)
+		con.commit()
+
 
 """
     def setSecondaryBar(self):
