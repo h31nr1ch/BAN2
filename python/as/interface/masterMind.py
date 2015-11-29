@@ -59,14 +59,12 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
 		self.insert(c,tabelas,what)
 		con.commit()
 
-
     def insertFuncionario(self):
 		tabelas = 'funcionarios'
-		what = '('+ self.line11.text() +','+"'"+self.line12.text()+"'"+')'
+		what = '('+ self.line11.text() +',' "'"+self.line12.text()+"'" ')'
 		#erros
 		self.insert(c,tabelas,what)
 		con.commit()
-
 
     def insertTecnicos(self):
 		tabelas = 'tecnicos'
@@ -75,7 +73,6 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
 		#erros
 		con.commit()
 
-
     def insertControladores(self):
 		tabelas = 'controladores'
 		what = '('+self.line17.text() + ',' "'"+self.line18.text()+"'"')'
@@ -83,13 +80,11 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
 		#erros
 		con.commit()
 
-
     def insertManutencao(self):
 		tabelas = 'manutencao'
 		what = '('+self.line19.text() + ',' + self.line20.text() + ',' +self.line21.text() + ','"'" + self.line22.text() +"'" ',' + self.line23.text() + ',' +self.line24.text()+')'
 		self.insert(c,tabelas,what)
 		con.commit()
-
 
     def insertAfiliacao(self): 
 		tabelas = 'afiliacao'
@@ -97,11 +92,10 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
 		self.insert(c,tabelas,what)
 		con.commit()
 
-
     def insertPericia(self):
 		tabelas = 'pericia'
 		what = '('+self.line28.text()+ ',' +self.line29.text()+')'
-		self.insert(c,tabelas,what)
+		self.select(c,tabelas,what)
 		con.commit()
 
 

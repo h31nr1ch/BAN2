@@ -153,6 +153,14 @@ class krl:
 		print(sql)
 		con.commit()
 
+	def funcionarios(self,c):
+		sql=c.execute("SELECT nome FROM funcionarios")
+		con.commit()
+
+	def avioes(self,c):
+		sql=c.execute("SELECT cod_modelo_aviao FROM aviao")
+		con.commit()
+
 	def TRIGGER1(self,c):
 		sql=c.execute("delete from modelos where modelos.capacidade < 0;")
 		con.commit()
@@ -182,10 +190,9 @@ class krl:
 		c.execute("drop table modelos;")
 		con.commit()
 
-	def select(self,c,var,what):
+	def select(self,c,what,var):
 		c.execute("select %s from %s;"%(var,what))
-		result = c.fetchall()
-		print result
+		con.commit()
 
 	def update(self,c,what,update,var):
 		c.execute("update %s set %s where %s;"%(what,var,update))
