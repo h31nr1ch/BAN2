@@ -183,16 +183,16 @@ class krl:
 		con.commit()
 
 	def select(self,c,var,what):
-		c.execute("select "+ var + " from " +what+";")
+		c.execute("select %s from %s;"%(var,what))
 		result = c.fetchall()
 		print result
 
 	def update(self,c,what,update,var):
-		c.execute("update "+ what +" set "+ var +" where " + update+";")
+		c.execute("update %s set %s where %s;"%(what,var,update))
 		con.commit()
 
-	def dell(self,c,what):
-		c.execute("delete from "+ what +" where " + var+";")
+	def dell(self,c,what,var):
+		c.execute("delete from %s where %s;"%(what,var))
 		con.commit()
 
 	def insert(self,c,tabelas,what):

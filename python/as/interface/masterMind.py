@@ -39,7 +39,7 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
 		print what
 		print tabelas
 		self.insert(c,tabelas,what)
-		#con.commit()
+		con.commit()
 	
     def insereSindicatos(self):
 		tabelas = 'sindicatos'
@@ -62,7 +62,7 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
 
     def insertFuncionario(self):
 		tabelas = 'funcionarios'
-		what ='(' + self.line11.text() + ',' + self.line12.text() + "'" ')'
+		what = '('+ self.line11.text() +','+"'"+self.line12.text()+"'"+')'
 		#erros
 		self.insert(c,tabelas,what)
 		con.commit()
@@ -128,8 +128,6 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
     def secondThresholdToggle(self):
         self.scribbler.secondToggle = not self.scribbler.secondToggle
 """
-
-
 
 class dialogBox(QtGui.QDialog):
     def __init__(self):
