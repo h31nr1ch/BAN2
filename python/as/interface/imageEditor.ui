@@ -53,9 +53,9 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>670</x>
+      <x>660</x>
       <y>30</y>
-      <width>91</width>
+      <width>111</width>
       <height>41</height>
      </rect>
     </property>
@@ -65,7 +65,7 @@
      </font>
     </property>
     <property name="text">
-     <string>EDITAR</string>
+     <string>REMOVER</string>
     </property>
    </widget>
    <widget class="QToolBox" name="Tabelas">
@@ -78,7 +78,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>9</number>
     </property>
     <widget class="QWidget" name="modelos">
      <property name="geometry">
@@ -86,7 +86,7 @@
        <x>0</x>
        <y>0</y>
        <width>221</width>
-       <height>331</height>
+       <height>301</height>
       </rect>
      </property>
      <attribute name="label">
@@ -181,7 +181,7 @@
        <x>0</x>
        <y>0</y>
        <width>221</width>
-       <height>331</height>
+       <height>301</height>
       </rect>
      </property>
      <attribute name="label">
@@ -248,6 +248,14 @@
      </widget>
     </widget>
     <widget class="QWidget" name="testes">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>221</width>
+       <height>301</height>
+      </rect>
+     </property>
      <attribute name="label">
       <string>Testes</string>
      </attribute>
@@ -335,6 +343,14 @@
      </widget>
     </widget>
     <widget class="QWidget" name="aviao">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>221</width>
+       <height>301</height>
+      </rect>
+     </property>
      <attribute name="label">
       <string>Avião</string>
      </attribute>
@@ -399,6 +415,14 @@
      </widget>
     </widget>
     <widget class="QWidget" name="funcionarios">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>221</width>
+       <height>301</height>
+      </rect>
+     </property>
      <attribute name="label">
       <string>Funcioários</string>
      </attribute>
@@ -486,6 +510,14 @@
      </widget>
     </widget>
     <widget class="QWidget" name="tecnicos">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>221</width>
+       <height>301</height>
+      </rect>
+     </property>
      <attribute name="label">
       <string>Técnicos</string>
      </attribute>
@@ -596,6 +628,14 @@
      </widget>
     </widget>
     <widget class="QWidget" name="controladores">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>221</width>
+       <height>301</height>
+      </rect>
+     </property>
      <attribute name="label">
       <string>Controladores</string>
      </attribute>
@@ -660,6 +700,14 @@
      </widget>
     </widget>
     <widget class="QWidget" name="page_8">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>221</width>
+       <height>301</height>
+      </rect>
+     </property>
      <attribute name="label">
       <string>Manuntenção</string>
      </attribute>
@@ -816,6 +864,14 @@
      </widget>
     </widget>
     <widget class="QWidget" name="afiliacao">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>221</width>
+       <height>301</height>
+      </rect>
+     </property>
      <attribute name="label">
       <string>Afiliação</string>
      </attribute>
@@ -903,6 +959,14 @@
      </widget>
     </widget>
     <widget class="QWidget" name="pericia">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>221</width>
+       <height>301</height>
+      </rect>
+     </property>
      <attribute name="label">
       <string>Perícia</string>
      </attribute>
@@ -967,39 +1031,195 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="buttonModelos">
     <property name="geometry">
      <rect>
       <x>330</x>
       <y>90</y>
       <width>171</width>
-      <height>24</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Listar Todos os Modelos</string>
+     <string>Todos os Modelos</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="buttonSindicatos">
     <property name="geometry">
      <rect>
       <x>330</x>
       <y>140</y>
       <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Todos os Sindicatos</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonTecnicos">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>190</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Todos os Técnicos</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonTecnicosPericia">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>240</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Técnicos e Suas Perícias</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonAprovados">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>290</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Modelos Aprovados</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonReprovados">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>340</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Modelos Reprovados</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonAfiliacoes">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>390</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Afiliações</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonAviao">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>440</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Aviões em Ordem</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="alfabetico">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>490</y>
+      <width>97</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Alfabética</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="nota">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>490</y>
+      <width>97</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Nota</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_35">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>90</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Nome da Tabela:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line30">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>120</y>
+      <width>113</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_36">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>170</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Campo Chave:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="line31">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>200</y>
+      <width>121</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="remove">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>250</y>
+      <width>83</width>
       <height>24</height>
      </rect>
     </property>
     <property name="text">
-     <string>Listar Todos os Sindicatos</string>
+     <string>Remover</string>
     </property>
    </widget>
-   <zorder>label</zorder>
-   <zorder>label_2</zorder>
-   <zorder>label_3</zorder>
-   <zorder>Tabelas</zorder>
-   <zorder>pushButton</zorder>
-   <zorder>pushButton_2</zorder>
-   <zorder>label_11</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -1007,7 +1227,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>19</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArquivo">

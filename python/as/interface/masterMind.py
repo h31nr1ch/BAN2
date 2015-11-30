@@ -32,6 +32,28 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
 	self.insert8.clicked.connect(self.insertManutencao)
 	self.insert9.clicked.connect(self.insertAfiliacao)
 	self.insert10.clicked.connect(self.insertPericia)
+        self.buttonModelos.clicked.connect(self.buscaModelos)
+        self.buttonSindicatos.clicked.connect(self.buscaSindicatos)
+        self.buttonTecnicos.clicked.connect(self.buscaTecnicos)
+        self.buttonTecnicosPericia.clicked.connect(self.buscaTecnicosPericia)
+        self.buttonAprovados.clicked.connect(self.buscaAprovados)
+        self.buttonReprovados.clicked.connect(self.buscaReprovados)
+        self.buttonAfiliacoes.clicked.connect(self.buscaAfiliacoes)
+        self.buttonAviao.clicked.connect(self.buscaAviao)
+        self.remove.clicked.connect(self.removeDaTabela)
+        QtCore.QObject.connect(self.alfabetico, QtCore.SIGNAL(("stateChanged(int)")), self.ToggleAlphabetic)
+        QtCore.QObject.connect(self.nota, QtCore.SIGNAL(("stateChanged(int)")), self.ToggleGrade)
+
+        self.alfabetico_ = False
+        self.nota_ = False
+
+    def ToggleAlphabetic(self):
+        self.alfabetico_ = not self.alfabetico_
+        self.nota.setCheckState(QtCore.Qt.Unchecked)
+
+    def ToggleGrade(self):
+        self.nota_ = not self.nota_
+        self.alfabetico.setCheckState(QtCore.Qt.Unchecked)
 
     def insereModelos(self):
 		tabelas='modelos'
@@ -94,7 +116,7 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
     def insertPericia(self):
 		tabelas = 'pericia'
 		what = '('+self.line28.text()+ ',' +self.line29.text()+')'
-		self.select(c,tabelas,what)
+		self.insert(c,tabelas,what)
 		con.commit()
 
 
