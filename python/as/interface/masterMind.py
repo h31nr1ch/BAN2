@@ -8,14 +8,14 @@ import MySQLdb
 import sys
 
 
-"""
+
 htmlPrefix = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">"
 htmlSuffix = "</p></body></html>"
-"""
+			
 
 class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
     def __init__(self, parent=None):
@@ -46,7 +46,6 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
 
         self.alfabetico_ = False
         self.nota_ = False
-
 
     def removeDaTabela2(self):
 		tabelas = self.line30.text()
@@ -95,36 +94,38 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
 			con.commit()
 
     def buscaTecnicosPericia2(self):
-			rows=self.buscaTecnicosPericia(c)
-			for row in rows:
-				for col in row:
-					print (col),
-				print "\n"
-			con.commit()
+		rows=self.buscaTecnicosPericia(c)
+		for row in rows:
+			for col in row:
+				print (col),
+			print "\n"
+		con.commit()
 
     def buscaModelos2(self):
-			rows=self.buscaModelos(c)
-			for row in rows:
-				for col in row:
-					print (col),
-				print "\n"
-			con.commit()
+		rows=self.buscaModelos(c)
+		for row in rows:
+			for col in row:
+				print (col),
+			print "\n"
+		con.commit()
+
+
 
     def buscaSindicatos2(self):
-			rows=self.buscaSindicatos(c)
-			for row in rows:
-				for col in row:
-					print (col),
-				print "\n"
-			con.commit()
+		rows=self.buscaSindicatos(c)
+		for row in rows:
+			for col in row:
+				print (col),
+			print "\n"
+		con.commit()
 
     def buscaTecnicos2(self):
-			rows=self.buscaTecnicos(c)
-			for row in rows:
-				for col in row:
-					print (col),
-				print "\n"
-			con.commit()
+		rows=self.buscaTecnicos(c)
+		for row in rows:
+			for col in row:
+				print (col),
+			print "\n"
+		con.commit()
 
 
     def ToggleAlphabetic(self):
@@ -234,3 +235,15 @@ class dialogBox(QtGui.QDialog):
         self.ok.setGeometry(QtCore.QRect(170, 190, 98, 27))
         self.ok.setText("OK")
         QtCore.QObject.connect(self.ok, QtCore.SIGNAL(("clicked()")), self.close)
+
+"""
+		linhas = ''
+		for row in rows:
+			for col in row:
+				linhas += col
+			linhas += '\n'
+		con.commit()
+		diag = dialogBox()
+		diag.text.setHtml(htmlPrefix + linhas + htmlSuffix)
+		diag.exec_()
+"""

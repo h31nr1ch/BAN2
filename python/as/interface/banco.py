@@ -252,7 +252,7 @@ class krl:
 		return rows
 
 	def buscaTecnicos(self,c):
-		c.execute("select * from tecnicos;")
+		c.execute("select * from tecnicos t join funcionarios f on (f.num_matricula_funcionarios=t.num_matricula_tecnicos);")
 		rows = c.fetchall()
 		return rows
 """
