@@ -143,14 +143,15 @@ class passt:
 
 class krl:
 	def aprovados(self,c):
-		sql=c.execute("SELECT nome FROM testes WHERE pont_max >= 8")
-		result = c.fetchall()
-		print result
+		c.execute("SELECT * FROM testes WHERE pont_max >= 8")
+		rows = c.fetchall()
+		return rows
 		con.commit()
 
 	def reprovados(self,c):
-		sql=c.execute("SELECT nome FROM testes WHERE pont_max <= 5")
-		print(sql)
+		c.execute("SELECT * FROM testes WHERE pont_max <= 5")
+		rows = c.fetchall()
+		return rows
 		con.commit()
 
 	def funcionarios(self,c):
@@ -206,7 +207,54 @@ class krl:
 		#c.execute("insert into pericia values (10,1);")
 		c.execute("insert into %s values %s;"%(tabelas,what))
 		con.commit()
+	
+	def removeDaTabela(self,c,tabelas,what):
+		c.execute("delete from %s where %s;"%(tabelas,what))
+		con.commit()
 
+	def buscaAviao(self,c):
+		c.execute("select * from aviao order by registro;")
+		rows = c.fetchall()
+		return rows
+#		for row in rows:
+#			for col in row:
+#				print (col),
+#			print "\n"
+
+	def buscaAviao3(self,c):
+		c.execute("select * from aviao a join manutencao m on (m.cod_modelo_manutencao = a.cod_modelo_aviao)order by m.pontuacao;")
+		rows = c.fetchall()
+		return rows
+
+	def buscaAfiliacoes(self,c):
+		c.execute("select * from funcionarios s join afiliacao a on (s.num_matricula_funcionarios= a.num_matricula_afiliacao);")
+		rows = c.fetchall()
+		return rows
+
+	def buscaTecnicosPericia(self,c):
+		c.execute("select * from tecnicos t join pericia p on (p.num_matricula_pericia= t.num_matricula_tecnicos) join funcionarios f on (f.num_matricula_funcionarios= t.num_matricula_tecnicos);")
+		rows = c.fetchall()
+		return rows
+
+	def buscaModelos(self,c):
+		c.execute("select * from modelos;")
+		rows = c.fetchall()
+		return rows
+
+	def buscaSindicatos(self,c):
+		c.execute("select * from sindicato;")
+		rows = c.fetchall()
+		return rows
+
+	def buscaSindicatos(self,c):
+		c.execute("select * from sindicatos;")
+		rows = c.fetchall()
+		return rows
+
+	def buscaTecnicos(self,c):
+		c.execute("select * from tecnicos;")
+		rows = c.fetchall()
+		return rows
 """
 tenhado(c)
 create_tables(c)

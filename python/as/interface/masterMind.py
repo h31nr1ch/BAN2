@@ -25,36 +25,114 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
 	self.insert1.clicked.connect(self.insereModelos)
 	self.insert2.clicked.connect(self.insereSindicatos)
 	self.insert3.clicked.connect(self.insereTestes)
-	self.insert4.clicked.connect(self.insereAvia)
+	self.insert4.clicked.connect(self.insereAviao)
 	self.insert5.clicked.connect(self.insertFuncionario)
 	self.insert6.clicked.connect(self.insertTecnicos)
 	self.insert7.clicked.connect(self.insertControladores)
 	self.insert8.clicked.connect(self.insertManutencao)
 	self.insert9.clicked.connect(self.insertAfiliacao)
 	self.insert10.clicked.connect(self.insertPericia)
-        self.buttonModelos.clicked.connect(self.buscaModelos)
-        self.buttonSindicatos.clicked.connect(self.buscaSindicatos)
-        self.buttonTecnicos.clicked.connect(self.buscaTecnicos)
-        self.buttonTecnicosPericia.clicked.connect(self.buscaTecnicosPericia)
-        self.buttonAprovados.clicked.connect(self.buscaAprovados)
-        self.buttonReprovados.clicked.connect(self.buscaReprovados)
-        self.buttonAfiliacoes.clicked.connect(self.buscaAfiliacoes)
-        self.buttonAviao.clicked.connect(self.buscaAviao)
-        self.remove.clicked.connect(self.removeDaTabela)
+        self.buttonModelos.clicked.connect(self.buscaModelos2)
+        self.buttonSindicatos.clicked.connect(self.buscaSindicatos2)
+        self.buttonTecnicos.clicked.connect(self.buscaTecnicos2)
+        self.buttonTecnicosPericia.clicked.connect(self.buscaTecnicosPericia2)
+        self.buttonAprovados.clicked.connect(self.buscaAprovados2)
+        self.buttonReprovados.clicked.connect(self.buscaReprovados2)
+        self.buttonAfiliacoes.clicked.connect(self.buscaAfiliacoes2)
+        self.buttonAviao.clicked.connect(self.buscaAviao2)
+        self.remove.clicked.connect(self.removeDaTabela2)
         QtCore.QObject.connect(self.alfabetico, QtCore.SIGNAL(("stateChanged(int)")), self.ToggleAlphabetic)
         QtCore.QObject.connect(self.nota, QtCore.SIGNAL(("stateChanged(int)")), self.ToggleGrade)
 
         self.alfabetico_ = False
         self.nota_ = False
 
+
+    def removeDaTabela2(self):
+		tabelas = self.line30.text()
+		what = self.line31.text()
+		self.removeDaTabela(c,tabelas,what)
+		con.commit()
+
+    def buscaAviao2(self):
+		if self.alfabetico_:
+			rows=self.buscaAviao(c)
+			for row in rows:
+				for col in row:
+					print (col),
+				print "\n"
+			con.commit()
+		elif self.nota_:
+			rows=self.buscaAviao3(c)
+			for row in rows:
+				for col in row:
+					print (col),
+				print "\n"
+			con.commit()			
+
+    def buscaAfiliacoes2(self):
+			rows=self.buscaAfiliacoes(c)
+			for row in rows:
+				for col in row:
+					print (col),
+				print "\n"
+			con.commit()
+
+    def buscaReprovados2(self):
+			rows=self.reprovados(c)
+			for row in rows:
+				for col in row:
+					print (col),
+				print "\n"
+			con.commit()
+
+    def buscaAprovados2(self):
+			rows=self.aprovados(c)
+			for row in rows:
+				for col in row:
+					print (col),
+				print "\n"
+			con.commit()
+
+    def buscaTecnicosPericia2(self):
+			rows=self.buscaTecnicosPericia(c)
+			for row in rows:
+				for col in row:
+					print (col),
+				print "\n"
+			con.commit()
+
+    def buscaModelos2(self):
+			rows=self.buscaModelos(c)
+			for row in rows:
+				for col in row:
+					print (col),
+				print "\n"
+			con.commit()
+
+    def buscaSindicatos2(self):
+			rows=self.buscaSindicatos(c)
+			for row in rows:
+				for col in row:
+					print (col),
+				print "\n"
+			con.commit()
+
+    def buscaTecnicos2(self):
+			rows=self.buscaTecnicos(c)
+			for row in rows:
+				for col in row:
+					print (col),
+				print "\n"
+			con.commit()
+
+
     def ToggleAlphabetic(self):
         self.alfabetico_ = not self.alfabetico_
-        self.nota.setCheckState(QtCore.Qt.Unchecked)
 
     def ToggleGrade(self):
         self.nota_ = not self.nota_
-        self.alfabetico.setCheckState(QtCore.Qt.Unchecked)
-
+#################################################
     def insereModelos(self):
 		tabelas='modelos'
 		what='('+self.line1.text()+','+self.line2.text()+','+self.line3.text()+')'
@@ -75,7 +153,7 @@ class gui(QtGui.QMainWindow, Ui_MainWindow,QtGui.QDialog,krl,passt):
 		self.insert(c,tabelas,what)
 		con.commit()
 
-    def insereAvia(self):
+    def insereAviao(self):
 		tabelas = 'aviao' 
 		what = '('+self.line9.text() + ',' + self.line10.text() +')'
 		self.insert(c,tabelas,what)
