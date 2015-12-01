@@ -1,60 +1,57 @@
 Traceback (most recent call last):
-  File "/home/lx/Udesc/BAN2/python/as/interface/masterMind.py", line 41, in insereModelos
-    insert(c,tabelas,what)
-  File "/home/lx/Udesc/BAN2/python/as/interface/banco.py", line 196, in insert
-    c.execute("insert into "+tabelas+" values "+what+");")
-  File "/usr/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
-    self.errorhandler(self, exc, value)
-  File "/usr/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
-    raise errorclass, errorvalue
-_mysql_exceptions.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'i' at line 1")
-(123,3123,12312)
-modelos
-(,,)
-modelos
-(4213,423423,42342)
-modelos
-Traceback (most recent call last):
-  File "/home/lx/Udesc/BAN2/python/as/interface/masterMind.py", line 40, in insereModelos
-    insert(c,tabelas,what)
-NameError: global name 'insert' is not defined
-Traceback (most recent call last):
-  File "/home/lx/Udesc/BAN2/python/as/interface/masterMind.py", line 40, in insereModelos
+  File "/home/lx/Udesc/BAN2/python/as/interface/masterMind.py", line 198, in insertPericia
     self.insert(c,tabelas,what)
-  File "/home/lx/Udesc/BAN2/python/as/interface/banco.py", line 197, in insert
-    c.execute("insert into "+tabelas+" values "+what+";")
-  File "/usr/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
-    self.errorhandler(self, exc, value)
-  File "/usr/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
-    raise errorclass, errorvalue
-_mysql_exceptions.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'i' at line 1")
-Traceback (most recent call last):
-  File "/home/lx/Udesc/BAN2/python/as/interface/masterMind.py", line 67, in insertFuncionario
-    self.insert(c,tabelas,what)
-  File "/home/lx/Udesc/BAN2/python/as/interface/banco.py", line 200, in insert
+  File "/home/lx/Udesc/BAN2/python/as/interface/banco.py", line 208, in insert
     c.execute("insert into %s values %s;"%(tabelas,what))
   File "/usr/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
     self.errorhandler(self, exc, value)
   File "/usr/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
     raise errorclass, errorvalue
-_mysql_exceptions.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''asdsa')' at line 1")
+_mysql_exceptions.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1")
 Traceback (most recent call last):
-  File "/home/lx/Udesc/BAN2/python/as/interface/masterMind.py", line 67, in insertFuncionario
+  File "/home/lx/Udesc/BAN2/python/as/interface/masterMind.py", line 198, in insertPericia
     self.insert(c,tabelas,what)
-  File "/home/lx/Udesc/BAN2/python/as/interface/banco.py", line 200, in insert
+  File "/home/lx/Udesc/BAN2/python/as/interface/banco.py", line 208, in insert
     c.execute("insert into %s values %s;"%(tabelas,what))
   File "/usr/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
     self.errorhandler(self, exc, value)
   File "/usr/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
     raise errorclass, errorvalue
-_mysql_exceptions.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''asdsa')' at line 1")
+_mysql_exceptions.IntegrityError: (1452, 'Cannot add or update a child row: a foreign key constraint fails (`testepy`.`pericia`, CONSTRAINT `pericia_ibfk_1` FOREIGN KEY (`num_matricula_pericia`) REFERENCES `funcionarios` (`num_matricula_funcionarios`))')
 Traceback (most recent call last):
-  File "/home/lx/Udesc/BAN2/python/as/interface/masterMind.py", line 66, in insertFuncionario
+  File "./main.py", line 2, in <module>
+    from masterMind import *
+  File "/home/lx/Udesc/BAN2/python/as/interface/masterMind.py", line 6, in <module>
+    from banco import *
+  File "/home/lx/Udesc/BAN2/python/as/interface/banco.py", line 215
+    def removeDaTabela(self,c,tabelas,what):
+    ^
+IndentationError: expected an indented block
+Traceback (most recent call last):
+  File "./main.py", line 2, in <module>
+    from masterMind import *
+  File "/home/lx/Udesc/BAN2/python/as/interface/masterMind.py", line 6, in <module>
+    from banco import *
+  File "/home/lx/Udesc/BAN2/python/as/interface/banco.py", line 215
+    def removeDaTabela(self,c,tabelas,what):
+    ^
+IndentationError: expected an indented block
+Traceback (most recent call last):
+  File "./main.py", line 2, in <module>
+    from masterMind import *
+  File "/home/lx/Udesc/BAN2/python/as/interface/masterMind.py", line 6, in <module>
+    from banco import *
+  File "/home/lx/Udesc/BAN2/python/as/interface/banco.py", line 215
+    def removeDaTabela(self,c,tabelas,what):
+    ^
+IndentationError: expected an indented block
+Traceback (most recent call last):
+  File "/home/lx/Udesc/BAN2/python/as/interface/masterMind.py", line 198, in insertPericia
     self.insert(c,tabelas,what)
-  File "/home/lx/Udesc/BAN2/python/as/interface/banco.py", line 207, in insert
+  File "/home/lx/Udesc/BAN2/python/as/interface/banco.py", line 209, in insert
     c.execute("insert into %s values %s;"%(tabelas,what))
   File "/usr/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
     self.errorhandler(self, exc, value)
   File "/usr/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
     raise errorclass, errorvalue
-_mysql_exceptions.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''asdsad')' at line 1")
+_mysql_exceptions.IntegrityError: (1452, 'Cannot add or update a child row: a foreign key constraint fails (`testepy`.`pericia`, CONSTRAINT `pericia_ibfk_1` FOREIGN KEY (`num_matricula_pericia`) REFERENCES `funcionarios` (`num_matricula_funcionarios`))')

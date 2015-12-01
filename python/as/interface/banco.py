@@ -204,10 +204,13 @@ class krl:
 		con.commit()
 
 	def insert(self,c,tabelas,what):
+		if (what is None or what == '(,)' or what == '(,,)' or what == '(,,,)' or what == '(,,,,)'):
+			print ("error")
+			return 
 		#c.execute("insert into pericia values (10,1);")
 		c.execute("insert into %s values %s;"%(tabelas,what))
 		con.commit()
-	
+
 	def removeDaTabela(self,c,tabelas,what):
 		c.execute("delete from %s where %s;"%(tabelas,what))
 		con.commit()
@@ -255,9 +258,23 @@ class krl:
 		c.execute("select * from tecnicos t join funcionarios f on (f.num_matricula_funcionarios=t.num_matricula_tecnicos);")
 		rows = c.fetchall()
 		return rows
+
+class oi(krl):
+	def func(self,c):
+		self.TRIGGER1(c)
+		#self.TRIGGER2(c)
+		#self.TRIGGER3(c)
+		self.TRIGGER4(c)
+
+
+
 """
 tenhado(c)
 create_tables(c)
 insertts(c)
 aprovados(c)
 """
+oii=oi()
+oii.func(c)
+
+
